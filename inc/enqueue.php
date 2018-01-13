@@ -66,3 +66,14 @@ function consult_cs_js()
 
 }
 add_action('wp_enqueue_scripts','consult_cs_js');
+
+function consult_fonts_url()
+{
+	$fonts_url = '';
+	$OpenSans = _x('on','OpenSans font: on or off','consult');
+	$Montserrat = _x('on','Montserrat font: on or off','consult');
+	$font_families = array();
+	$font_families[] = 'Open+Sans:300i,400,400i,600,700,800';
+	$font_families[] = 'Montserrat:200,300,400,500,600,700,800,900';
+	return $fonts_url;
+}
