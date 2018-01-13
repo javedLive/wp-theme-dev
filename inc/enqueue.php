@@ -2,7 +2,9 @@
 function consult_cs_js()
 {
 	//wp_enqueue_style( $handle, $src, $deps, $ver, $media );
-	wp_enqueue_style('google-fonts','https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,700,800%7CMontserrat:200,300,400,500,600,700,800,900');
+	//wp_enqueue_style('google-fonts','https://fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,700,800%7CMontserrat:200,300,400,500,600,700,800,900');
+	wp_enqueue_style('gfonts', consult_fonts_url(), array(), '1.0.0');
+	
 	wp_enqueue_style('flaticon', get_template_directory_uri().'/assets/css/flaticon.css', array(), '1.0.0', 'all');
 	wp_enqueue_style('font-awesome', get_template_directory_uri().'/assets/css/font-awesome.min.css', array(), '0.1.0', 'all');
 	wp_enqueue_style('animate',get_template_directory_uri() . '/assets/css/animate.css', array(), '0.1.0', 'all');
@@ -72,8 +74,36 @@ function consult_fonts_url()
 	$fonts_url = '';
 	$OpenSans = _x('on','OpenSans font: on or off','consult');
 	$Montserrat = _x('on','Montserrat font: on or off','consult');
-	$font_families = array();
-	$font_families[] = 'Open+Sans:300i,400,400i,600,700,800';
-	$font_families[] = 'Montserrat:200,300,400,500,600,700,800,900';
-	return $fonts_url;
+	if ( 'off' !== $Montserrat || 'off' !== $OpenSans ) {
+		$font_families = array();
+		 
+		if ( 'off' !== $Montserrat ) 
+		{
+			$font_families[] = 'Montserrat:200,300,400,500,600,700,800,900';	
+		}
+		 
+		if ( 'off' !== $OpenSans )
+		{
+			
+			$font_families[] = 'Open Sans:300i,400,400i,600,700,800';
+		}
+
+		$query_args = array(
+		'family' => urlencode( implode( '|', $font_families ) ),
+		'subset' => urlencode( 'latin,latin-ext,cyrillic-ext,cyrillic,vietnamese,greek ,greek-ext' ),
+		);
+
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+		return esc_url_raw( $fonts_url );
 }
+
+// Adding Google fonts to the editor
+function consult_editor_styles() 
+{
+	add_editor_style( array( 'editor-style.css', theme_slug_fonts_url() ) );
+	$OpenSans = (array('editor-style.css',''))
+	$Montserrat = (array('editor-style.css',''))
+}
+add_action( 'after_setup_theme', 'consult_editor_styles' );
