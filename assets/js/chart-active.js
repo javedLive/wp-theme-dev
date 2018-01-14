@@ -21,6 +21,7 @@ jQuery(document).ready(function() {
 	}
 	window.onload = function() {
 		var chart_barChart = document.getElementById("barChart").getContext("2d");
+		
 		window.myBar = new Chart(chart_barChart).Bar(barChartData, {
 			responsive: true
 		});

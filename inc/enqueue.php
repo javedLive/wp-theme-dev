@@ -51,21 +51,6 @@ function consult_cs_js()
 	wp_enqueue_script('video', get_template_directory_uri() . '/rs-plugin/js/extensions/revolution.extension.video.min.js', array('jquery'), '0.1.0', true);
 	wp_enqueue_script('consult-custom', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '0.1.0', true);
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 add_action('wp_enqueue_scripts','consult_cs_js');
 
@@ -83,16 +68,14 @@ function consult_fonts_url()
 		}
 		 
 		if ( 'off' !== $OpenSans )
-		{
-			
+		{	
 			$font_families[] = 'Open Sans:300i,400,400i,600,700,800';
 		}
 
 		$query_args = array(
 		'family' => urlencode( implode( '|', $font_families ) ),
-		'subset' => urlencode( 'latin,latin-ext,cyrillic-ext,cyrillic,vietnamese,greek ,greek-ext' ),
+//		'subset' => urlencode( 'latin,latin-ext,cyrillic-ext,cyrillic,vietnamese,greek ,greek-ext' ),
 		);
-
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 	}
@@ -102,8 +85,16 @@ function consult_fonts_url()
 // Adding Google fonts to the editor
 function consult_editor_styles() 
 {
-	add_editor_style( array( 'editor-style.css', theme_slug_fonts_url() ) );
-	$OpenSans = (array('editor-style.css',''))
-	$Montserrat = (array('editor-style.css',''))
+	$OpenSans = (array('editor-style.css','//fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,700,800'));
+	$Montserrat = (array('editor-style.css','//fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900'));
+	add_editor_style($OpenSans,$Montserrat );
 }
 add_action( 'after_setup_theme', 'consult_editor_styles' );
+
+// Adding fonts to the Custom Header Screen
+function consult_custom_header_fonts()
+{
+	wp_enqueue_style('OpenSans-fonts','//fonts.googleapis.com/css?family=Open+Sans:300i,400,400i,600,700,800',array(),null);
+	wp_enqueue_style('Montserrat-fonts','//fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900',array(),null);
+}
+add_action('admin_print_styles_appearance_page_custome-header','consult_custom_header_fonts');
