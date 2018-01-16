@@ -30,12 +30,12 @@
                         <div class="blog_left_single_item">
                             <div class="blog_pic image_fulwidth">
                                 <a href="<?php the_permalink();?>"><?php the_post_thumbnail();?></a>
-                                <h4 class="date_position"><?php echo get_the_date();?></h4>
+                                <h4 class="date_position"><?php echo get_the_date('F j Y');?></h4>
                             </div>
 
                             <div class="blog_left_single_content para_default">
-                                <h3><a href="blog-single.html">Make your productive teams</a></h3>
-                                <p>Make your productive teams Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pharetra ligula vitae mattis commodo. Phasellus consequat ipsum id mauris viverra, ac pulvinar dui fringilla. Ut suscipit ac turpis vitae accumsan. Fusce risus est, sagittis in lectus …</p>
+                                <h3><a href="blog-single.html"><?php echo get_the_title()?></a></h3>
+                                <p><?php echo wp_trim_words(get_the_content(),25);?></p>
                             </div>
                         </div>
                         <?php
