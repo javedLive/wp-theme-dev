@@ -2518,6 +2518,46 @@ h6.mb-0 {
 .single_blog_item_div h2 {
     margin-bottom: 30px;
 }
+
+/*---- 24. Admin comment----*/
+.content_blog_a {
+    overflow: hidden;
+    padding: 34px 0;
+    border-bottom: 1px solid #d1d1d1;
+    border-top: 1px solid #d1d1d1;
+    margin: 50px 0;
+}
+.e_blog_A {
+    float: left;
+    list-style: none;
+}
+.e_blog_A img {
+    height: auto;
+    max-width: 80px;
+    margin-right: 27px;
+}
+li.blog_a_text {
+    list-style: none;
+}
+.blog_a_text h5 {
+    margin: 0;
+}
+.blog_a_text h5 a {
+    color: #494949;
+    font-size: 14px;
+    font-weight: 600;
+}
+.blog_a_text p {
+    color: #7f7f7f;
+    font-size: 14px;
+    margin: 0;
+    line-height: 24px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+
 /*=============================================================================
 -------------------------------------------------------------------------------
                                     THANK YOU   
